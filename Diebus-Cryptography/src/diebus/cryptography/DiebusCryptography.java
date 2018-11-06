@@ -20,21 +20,28 @@ public class DiebusCryptography {
         System.out.print("Enter Message : ");
         String text = input.nextLine();
         System.out.println("Encrypt : " + Encrypt(text));
-        System.out.println("Decrypt : " + Decrypt(Encrypt(text)));
     }
     
     public static String Encrypt(String message)
     {
+        Random random = new Random();
         String code = "";
         int start = 1;
         for(int x = 0; x < message.length(); x++)
         {
+            for(int y = 0;y < 32; y++)
+            {
+                code += (char)random.nextInt(130);
+            }
             int letter = (int)message.charAt(x) + start;
             code += (char)letter;
             start++;
             if(start > 7)
                 start = 1;
-        
+            for(int y = 0;y < 32; y++)
+            {
+                code += (char)random.nextInt(130);
+            }
         }
         return code;
     }
@@ -45,6 +52,7 @@ public class DiebusCryptography {
         int start = 1;
         for(int x = 0; x < code.length(); x++)
         {
+            
             int letter = (int)code.charAt(x) - start;
             message += (char)letter;
             start++;
