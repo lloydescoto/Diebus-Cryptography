@@ -11,17 +11,6 @@ import java.util.*;
  * @author Lloyd
  */
 public class DiebusCryptography {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter Message : ");
-        String text = input.nextLine();
-        System.out.println("Encrypt : " + Encrypt(text));
-        System.out.println("Decrypt : " + Decrypt(Encrypt(text),5));
-    }
     
     public static String Encrypt(String message)
     {
