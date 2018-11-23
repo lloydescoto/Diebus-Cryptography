@@ -33,6 +33,19 @@ public class DiebusCryptography {
                     start = 1;
             }
         }
+        else if(start == 7)
+        {
+            Random random = new Random();
+            for(int x = 0;x < message.length();x++)
+            {
+                code += (char)random.nextInt(127);
+                int letter = (int)message.charAt(x) + start;
+                code += (char)letter;
+                start++;
+                if(start > 7)
+                    start = 1;
+            }
+        }
         else
         {
             for(int x = 0; x < message.length(); x++)
@@ -65,6 +78,23 @@ public class DiebusCryptography {
                 }
                 else
                 {
+                }
+            }
+        }
+        else if(start == 7)
+        {
+            for(int x = 0;x < code.length(); x++)
+            {
+                if(x % 2 == 0)
+                {
+                }
+                else
+                {
+                    int letter = (int)code.charAt(x) - start;
+                    message += (char)letter;
+                    start++;
+                    if(start > 7)
+                        start = 1;
                 }
             }
         }
