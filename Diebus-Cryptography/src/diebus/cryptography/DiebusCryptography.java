@@ -19,7 +19,7 @@ public class DiebusCryptography {
         calendar.setTime(now);
         String code = "";
         //int start = calendar.get(Calendar.DAY_OF_WEEK);
-        int start = 1;
+        int start = 2;
         if(start == 1)
         {
             Random random = new Random();
@@ -28,6 +28,19 @@ public class DiebusCryptography {
                 int letter = (int)message.charAt(x) + start;
                 code += (char)letter;
                 code += (char)random.nextInt(127);
+                start++;
+                if(start > 7)
+                    start = 1;
+            }
+        }
+        else if(start == 2)
+        {
+            for(int x = 0;x < message.length();x++)
+            {
+                int letter = (int)message.charAt(x) + start;
+                code += letter;
+                if(x + 1 < message.length())
+                    code += '-';
                 start++;
                 if(start > 7)
                     start = 1;
@@ -79,6 +92,18 @@ public class DiebusCryptography {
                 else
                 {
                 }
+            }
+        }
+        else if(start == 2)
+        {
+            String[] codes = code.split("-");
+            for(int x = 0;x < codes.length; x++)
+            {
+                int letter = Integer.parseInt(codes[x]) - start;
+                message += (char)letter;
+                start++;
+                if(start > 7)
+                    start = 1;
             }
         }
         else if(start == 7)

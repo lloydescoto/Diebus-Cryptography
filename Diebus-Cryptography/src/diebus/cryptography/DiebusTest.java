@@ -19,6 +19,6 @@ public class DiebusTest {
         System.out.print("Enter Message : ");
         String text = input.nextLine();
         System.out.println("Encrypt : " + Encrypt(text));
-        System.out.println("Decrypt : " + Decrypt(Encrypt(text),1));
+        System.out.println("Decrypt : " + Decrypt(Encrypt(text),2));
     }
 }
