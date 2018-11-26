@@ -12,6 +12,12 @@ import java.util.*;
  */
 public class DiebusCryptography {
     
+    /**
+     * @function DiebusCryptography.Encrypt
+     * 
+     * @param message - The Inputted Message Text
+     * @return  code - The Encrypted Text
+     */
     public static String Encrypt(String message)
     {
         Date now = new Date();
@@ -90,7 +96,12 @@ public class DiebusCryptography {
         }
         return code;
     }
-    
+    /**
+     * @function DiebusCryptography.Decrypt
+     * @param code - Inputted Encrypted Text
+     * @param key - Inputted Key Patterns
+     * @return message - The Decrypted Text
+     */
     public static String Decrypt(String code, int key)
     {
         String message = "";
