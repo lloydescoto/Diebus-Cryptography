@@ -135,6 +135,7 @@ public class DiebusCryptography {
                 {
                     code += message.charAt(x);
                 }
+                code += '|';
             }
         }
         else if(start == 7)
