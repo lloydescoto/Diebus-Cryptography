@@ -5,6 +5,7 @@
  */
 package diebus.cryptography;
 
+import diebus.cryptography.Encryption.Encryption;
 import java.util.*;
 /**
  *
@@ -18,14 +19,14 @@ public class DiebusCryptography {
      * @param message - The Inputted Message Text
      * @return  code - The Encrypted Text
      */
-    public static String Encrypt(String message)
+    public static String Encrypt(String message) throws Exception
     {
         Date now = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         String code = "";
         //int start = calendar.get(Calendar.DAY_OF_WEEK);
-        int start = 4;
+        int start = 5;
         if(start == 1)
         {
             Random random = new Random();
@@ -138,6 +139,10 @@ public class DiebusCryptography {
                 code += '|';
             }
         }
+        else if(start == 5)
+        {
+            return Encryption.messageDigest(message).code.toString();
+        }
         else if(start == 7)
         {
             Random random = new Random();
@@ -215,6 +220,64 @@ public class DiebusCryptography {
                     start = 1;
                     
             }
+        }
+        else if(start == 4)
+        {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("??","a");
+            map.put("-??","b");
+            map.put("b","-??");
+            map.put("c","??-");
+            map.put("d","//-");
+            map.put("e","--?");
+            map.put("f","---");
+            map.put("g","?/?");
+            map.put("h","///");
+            map.put("i","/?");
+            map.put("j","^^!");
+            map.put("k","/!/");
+            map.put("l","?");
+            map.put("m","?``");
+            map.put("n","/..");
+            map.put("o","...");
+            map.put("p","?.>");
+            map.put("q","<><");
+            map.put("r","##!");
+            map.put("s","++/");
+            map.put("t","^^%");
+            map.put("u","%%%");
+            map.put("v","/");
+            map.put("w","%/");
+            map.put("x","!!");
+            map.put("y","_-");
+            map.put("z","-/-");
+            map.put("A","!");
+            map.put("B","!!");
+            map.put("C","!!!");
+            map.put("D","!!!!");
+            map.put("E","!!!!!");
+            map.put("F","@");
+            map.put("G","@@");
+            map.put("H","@@@");
+            map.put("I","@@@@");
+            map.put("J","@@@@@");
+            map.put("K","#");
+            map.put("L","##");
+            map.put("M","###");
+            map.put("N","####");
+            map.put("O","#####");
+            map.put("P","$");
+            map.put("Q","$$");
+            map.put("R","$$$");
+            map.put("S","$$$$");
+            map.put("T","$$$$$");
+            map.put("U","%");
+            map.put("V","%%");
+            map.put("W","%%%");
+            map.put("X","%%%%");
+            map.put("Y","%%%%%");
+            map.put("Z","%%%%%%");
+            String[] codes = code.split("|");
         }
         else if(start == 7)
         {
