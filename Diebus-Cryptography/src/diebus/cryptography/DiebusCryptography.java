@@ -26,7 +26,7 @@ public class DiebusCryptography {
         calendar.setTime(now);
         String code = "";
         //int start = calendar.get(Calendar.DAY_OF_WEEK);
-        int start = 5;
+        int start = 6;
         if(start == 1)
         {
             Random random = new Random();
@@ -142,6 +142,10 @@ public class DiebusCryptography {
         else if(start == 5)
         {
             return Encryption.messageDigest(message).code.toString();
+        }
+        else if(start == 6)
+        {
+            return Encryption.messageAuthentication(message).message;
         }
         else if(start == 7)
         {
