@@ -15,6 +15,11 @@ import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import javax.xml.bind.DatatypeConverter;
+import sun.misc.BASE64Encoder;
 
 /**
  *
@@ -79,4 +84,17 @@ public class Encryption {
         byte[] sign = signature.sign();
         return new Encryption(new String(sign, "UTF8"));
     }
+    
+    public static Encryption secretKey(String msg) throws Exception
+    {
+        KeyGenerator key = KeyGenerator.getInstance("DES");
+        key.init(56);
+        DESKeySpec desKey = new DESKeySpec(key.generateKey().toString().getBytes());
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+        SecretKey secureKey = keyFactory.generateSecret(desKey);
+        Cipher cipher = Cipher.getInstance("DES");
+        cipher.init(Cipher.ENCRYPT_MODE, secureKey, new SecureRandom());
+        return new Encryption(new BASE64Encoder().encode(cipher.doFinal(msg.getBytes())));
+    }
+   
 }
