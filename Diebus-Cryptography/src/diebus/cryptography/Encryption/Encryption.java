@@ -39,9 +39,19 @@ public class Encryption {
         this.message = message;
     }
     
-    public static Encryption messageDigest(String msg) throws Exception
+    public static Encryption sha256(String msg) throws Exception
     {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(msg.getBytes());
+        byte[] digest = md.digest();
+        for(int i = 0;i < digest.length; i++)
+            code.append(Integer.toHexString(0xFF & digest[i]));
+        return new Encryption(code);
+    }
+    
+    public static Encryption md5(String msg) throws Exception
+    {
+        MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(msg.getBytes());
         byte[] digest = md.digest();
         for(int i = 0;i < digest.length; i++)
