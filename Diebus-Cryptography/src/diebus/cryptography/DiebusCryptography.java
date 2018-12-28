@@ -26,7 +26,7 @@ public class DiebusCryptography {
         calendar.setTime(now);
         String code = "";
         //int start = calendar.get(Calendar.DAY_OF_WEEK);
-        int start = 3;
+        int start = 5;
         if(start == 1)
         {
             Random random = new Random();
@@ -42,16 +42,7 @@ public class DiebusCryptography {
         }
         else if(start == 2)
         {
-            for(int x = 0;x < message.length();x++)
-            {
-                int letter = (int)message.charAt(x) + start;
-                code += letter;
-                if(x + 1 < message.length())
-                    code += '-';
-                start++;
-                if(start > 7)
-                    start = 1;
-            }
+            return Encryption.md5(message).code.toString();
         }
         else if(start == 3)
         {
@@ -63,7 +54,7 @@ public class DiebusCryptography {
         }
         else if(start == 5)
         {
-            return Encryption.messageDigest(message).code.toString();
+            return Encryption.sha256(message).code.toString();
         }
         else if(start == 6)
         {
