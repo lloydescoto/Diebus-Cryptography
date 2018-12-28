@@ -9,7 +9,9 @@ import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
+import java.security.PrivateKey;
 import java.security.SecureRandom;
+import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
@@ -63,5 +65,18 @@ public class Encryption {
         cipher.update(msg.getBytes());
         byte[] cipherText = cipher.doFinal();
         return new Encryption(new String(cipherText, "UTF8"));
+    }
+    
+    public static Encryption signature(String msg) throws Exception
+    {
+        KeyPairGenerator pairGen = KeyPairGenerator.getInstance("DSA");
+        pairGen.initialize(2048);
+        KeyPair pair = pairGen.generateKeyPair();
+        PrivateKey key = pair.getPrivate();
+        Signature signature = Signature.getInstance("SHA256withDSA");
+        signature.initSign(key);
+        signature.update(msg.getBytes());
+        byte[] sign = signature.sign();
+        return new Encryption(new String(sign, "UTF8"));
     }
 }
