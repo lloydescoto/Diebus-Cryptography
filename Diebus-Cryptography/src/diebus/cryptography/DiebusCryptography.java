@@ -26,19 +26,10 @@ public class DiebusCryptography {
         calendar.setTime(now);
         String code = "";
         //int start = calendar.get(Calendar.DAY_OF_WEEK);
-        int start = 5;
+        int start = 1;
         if(start == 1)
         {
-            Random random = new Random();
-            for(int x = 0;x < message.length();x++)
-            {
-                int letter = (int)message.charAt(x) + start;
-                code += (char)letter;
-                code += (char)random.nextInt(127);
-                start++;
-                if(start > 7)
-                    start = 1;
-            }
+            return Encryption.ceasarCipher(message, start).code.toString();
         }
         else if(start == 2)
         {
