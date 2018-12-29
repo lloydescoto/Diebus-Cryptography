@@ -12,14 +12,12 @@ import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.SecureRandom;
 import java.security.Signature;
-import java.util.Arrays;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
-import javax.xml.bind.DatatypeConverter;
 import sun.misc.BASE64Encoder;
 
 /**
@@ -79,8 +77,7 @@ public class Encryption {
         Key key = gen.generateKey();
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(key);
-        byte[] macCode = mac.doFinal(msg.getBytes());
-        return new Encryption(new String(macCode));
+        return new Encryption(new String(mac.doFinal(msg.getBytes())));
     }
     
     public static Encryption rsa(String msg) throws Exception
@@ -91,8 +88,7 @@ public class Encryption {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, pair.getPublic());
         cipher.update(msg.getBytes());
-        byte[] cipherText = cipher.doFinal();
-        return new Encryption(new String(cipherText, "UTF8"));
+        return new Encryption(new String(cipher.doFinal(), "UTF8"));
     }
     
     public static Encryption signature(String msg) throws Exception
@@ -104,8 +100,7 @@ public class Encryption {
         Signature signature = Signature.getInstance("SHA256withDSA");
         signature.initSign(key);
         signature.update(msg.getBytes());
-        byte[] sign = signature.sign();
-        return new Encryption(new String(sign, "UTF8"));
+        return new Encryption(new String(signature.sign(), "UTF8"));
     }
     
     public static Encryption secretKey(String msg) throws Exception
