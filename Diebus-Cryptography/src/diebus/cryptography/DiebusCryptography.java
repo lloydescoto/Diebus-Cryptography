@@ -5,6 +5,7 @@
  */
 package diebus.cryptography;
 
+import diebus.cryptography.Decryption.Decryption;
 import diebus.cryptography.Encryption.Encryption;
 import java.util.*;
 /**
@@ -23,7 +24,7 @@ public class DiebusCryptography {
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        int start = calendar.get(Calendar.DAY_OF_WEEK);
+        int start = 1; //calendar.get(Calendar.DAY_OF_WEEK);
         switch (start) {
             case 1:
                 return Encryption.ceasarCipher(message, start).code.toString();
@@ -41,6 +42,16 @@ public class DiebusCryptography {
                 return Encryption.signature(message).message;
             default:
                 break;
+        }
+        return "Error Occur";
+    }
+    
+    public static String Decrypt(String message, int start)
+    {
+        switch(start)
+        {
+            case 1:
+                return Decryption.ceasarCipher(message, start).code.toString();
         }
         return "Error Occur";
     }

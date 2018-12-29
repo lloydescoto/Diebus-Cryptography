@@ -6,6 +6,7 @@
 package diebus.cryptography;
 
 import static diebus.cryptography.DiebusCryptography.Encrypt;
+import static diebus.cryptography.DiebusCryptography.Decrypt;
 import java.util.Scanner;
 
 /**
@@ -18,5 +19,6 @@ public class DiebusTest {
         System.out.print("Enter Message : ");
         String text = input.nextLine();
         System.out.println("Encrypt : " + Encrypt(text));
+        System.out.println("Decrypt : " + Decrypt(Encrypt(text),1));
     }
 }
